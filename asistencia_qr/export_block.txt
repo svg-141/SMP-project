@@ -1,0 +1,24 @@
+final excel = Excel.createExcel();
+final sheet = excel['Asistencias'];
+sheet.updateCell(CellIndex.indexByString("A1"), 'DNI');
+sheet.updateCell(CellIndex.indexByString("B1"), 'Nombre');
+sheet.updateCell(CellIndex.indexByString("C1"), 'Apellidos');
+sheet.updateCell(CellIndex.indexByString("D1"), 'Fecha');
+sheet.updateCell(CellIndex.indexByString("E1"), 'Hora');
+sheet.updateCell(CellIndex.indexByString("F1"), 'Estado');
+int row = 2;
+for (final a in asistencias) {
+  final docente = docenteMap[a.docenteDni];
+  final nombre = docente?.nombre ?? '';
+  final apellidos = docente?.apellidos ?? '';
+  final fecha = DateFormat('yyyy-MM-dd').format(a.fechaHora);
+  final hora = DateFormat('HH:mm').format(a.fechaHora);
+  final estado = _estadoToString(a.estado);
+  sheet.updateCell(CellIndex.indexByString("A\$row"), a.docenteDni);
+  sheet.updateCell(CellIndex.indexByString("B\$row"), nombre);
+  sheet.updateCell(CellIndex.indexByString("C\$row"), apellidos);
+  sheet.updateCell(CellIndex.indexByString("D\$row"), fecha);
+  sheet.updateCell(CellIndex.indexByString("E\$row"), hora);
+  sheet.updateCell(CellIndex.indexByString("F\$row"), estado);
+  row++;
+}
