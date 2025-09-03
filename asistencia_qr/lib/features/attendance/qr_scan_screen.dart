@@ -3,7 +3,6 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'dart:convert';
 import '../../data/isar_service.dart';
 import '../../data/models/docente.dart';
-import '../../data/models/asistencia.dart';
 import 'attendance_logic.dart';
 import 'attendance_result_screen.dart';
 

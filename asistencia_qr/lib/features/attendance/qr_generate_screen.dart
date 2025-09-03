@@ -29,13 +29,49 @@ class _QrGenerateScreenState extends State<QrGenerateScreen> {
       });
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('QR guardado localmente')),
+      SnackBar(
+        content: Container(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: Colors.blue[900],
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Icon(
+                  Icons.check_circle,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+              const SizedBox(width: 12),
+              const Expanded(
+                child: Text(
+                  '¡QR guardado exitosamente!',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.yellow[700],
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: const EdgeInsets.all(16),
+        duration: const Duration(seconds: 3),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final qrJson = jsonEncode({
       'dni': _dniController.text,
       'nombre': _nombreController.text,
